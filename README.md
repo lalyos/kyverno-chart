@@ -29,3 +29,30 @@ and your actual template will be a single line:
 ```
 
 This way helm will ignore gotemplates.
+
+## Use with helm
+
+You can check how helm would render this chart:
+```
+helm template xxx https://github.com/lalyos/kyverno-chart/archive/master.tar.gz
+```
+
+## Use with fleet
+
+If you want to use it [fleet](https://github.com/rancher/fleet/) here is a sample `fleet.yaml`
+```
+namespace: fleet-helm-example
+helm:
+  releaseName: kyverno-test
+  chart: "https://github.com/lalyos/kyverno-chart/archive/master.zip"
+```
+
+To test:
+- download it into an empty dir
+- run `fleet test`
+
+Selfnote: to install fleet-cli:
+```
+curl -Lo /usr/local/bin/fleet https://github.com/rancher/fleet/releases/download/v0.3.1/fleet-darwin-amd64
+chmod +x /usr/local/bin/fleet
+```
